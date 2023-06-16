@@ -26,6 +26,16 @@ class reconSys():
         #df = pd.concat(df)
         return df
     
+    def getExercises(self):
+        return self.scrapePage().Exercise.to_list()
+    
+    def toHTML(self):
+        dropDown = ""
+        for i in self.getExercises():
+            dropDown += "<option value={}>{}</option>\n".format(i,i.title())
+        return dropDown
+        
+    
     def prep(self):
 
         #Get df from scrape function
@@ -71,6 +81,7 @@ class reconSys():
         print('Top {} Exercises based on {}'.format(no_exercises, exercise))
         # Return the top most similar exercises by filtering the starting dataframe
         return df['Exercise'].iloc[movie_indices]
+
 
 
 
